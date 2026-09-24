@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gold Trader Pro</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#0b1220;color:#eef3f8}
+.wrap{max-width:900px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+h1{font-size:24px;margin:0}.muted{color:#91a0b4;font-size:13px}.status{padding:7px 10px;border-radius:20px;background:#123b2b;color:#69e09b;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{background:#131d2d;border:1px solid #263348;border-radius:16px;padding:16px}
+.price{font-size:28px;font-weight:700;margin:7px 0}.up{color:#65dc9a}.down{color:#ff8b8b}
+.row{display:flex;justify-content:space-between;gap:10px;margin:8px 0}.pill{padding:5px 9px;border-radius:8px;background:#202c40;font-size:12px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+button{border:0;border-radius:11px;padding:13px;font-weight:700;font-size:14px}.buy{background:#1f9d63;color:white}.sell{background:#c94b55;color:white}.off{background:#2a3548;color:#d8e0ea}
+input,select{width:100%;padding:11px;border-radius:9px;border:1px solid #34435b;background:#0e1726;color:white;margin-top:6px}
+.full{grid-column:1/-1}.notice{background:#191f2b;border-radius:10px;padding:11px;color:#aeb9c9;font-size:12px;line-height:1.45;margin-top:12px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><div><h1>Gold Trader Pro</h1><div class="muted">XAUUSD / XAUAUD • phone dashboard</div></div><div class="status">DEMO UI</div></div>
+
+<div class="grid">
+<div class="card"><div class="muted">XAUUSD</div><div id="xauusd" class="price">--</div><div class="up">Demo market panel</div><div class="row"><span>Signal</span><span class="pill" id="sig1">WAIT</span></div></div>
+<div class="card"><div class="muted">XAUAUD</div><div id="xauaud" class="price">--</div><div class="up">Demo market panel</div><div class="row"><span>Signal</span><span class="pill" id="sig2">WAIT</span></div></div>
+
+<div class="card full"><b>Trade controls</b>
+<div class="controls">
+<label>Symbol<select><option>XAUUSD</option><option>XAUAUD</option></select></label>
+<label>Volume<input type="number" value="0.01" min="0.01" step="0.01"></label>
+<label>Stop Loss<input type="number" value="100"></label>
+<label>Take Profit<input type="number" value="200"></label>
+</div>
+<div class="controls">
+<button class="buy" onclick="demo('BUY')">BUY — DEMO</button>
+<button class="sell" onclick="demo('SELL')">SELL — DEMO</button>
+</div>
+<div class="notice">This phone prototype is a dashboard/UI only. It does not connect to IC Markets, MT4/MT5, receive live prices, or place real orders. Automatic trading must be connected through a properly hosted MT4/MT5 Expert Advisor and a trading bridge.</div>
+</div>
+
+<div class="card full"><b>Activity</b><div id="log" class="muted" style="margin-top:10px">No demo actions yet.</div></div>
+</div>
+</div>
+<script>
+let a=3350.00,b=5750.00;
+function tick(){a+=(Math.random()-.5)*1.5;b+=(Math.random()-.5)*2.5;document.getElementById('xauusd').textContent=a.toFixed(2);document.getElementById('xauaud').textContent=b.toFixed(2)}
+function demo(side){document.getElementById('log').textContent=new Date().toLocaleTimeString()+' — '+side+' button pressed (UI demo only).'}
+tick();setInterval(tick,1500);
+</script>
+</body>
+</html>
